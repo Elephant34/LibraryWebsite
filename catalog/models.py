@@ -32,6 +32,12 @@ class Series(models.Model):
         help_text="Enter the series name"
     )
 
+    def get_absolute_url(self):
+        """Returns the url to book detail page
+        """
+
+        return reverse('series-detail', args=[str(self.id)])
+
     def __str__(self):
         """String representation of the series name
         """
