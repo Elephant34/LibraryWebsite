@@ -72,7 +72,7 @@ class Book(models.Model):
     """
 
     class Meta:
-        ordering = ["series", "series_volume_number"]
+        ordering = ["-series", "series_volume_number"]
 
 
     title = models.CharField(max_length=512)
@@ -111,6 +111,12 @@ class Book(models.Model):
         unique=True,
         help_text='13 Character <a href="https://isbnsearch.org">ISBN number</a>'
     )
+
+    def save(self, *args, **kwargs):
+        if not self.series:
+            self.series_volume_number = None
+        
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Returns the url to book detail page
