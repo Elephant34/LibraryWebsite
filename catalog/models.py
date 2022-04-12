@@ -147,14 +147,12 @@ class BookInstance(models.Model):
 
     owner = models.ForeignKey(
         User,
-        on_delete=models.SET_NULL,
-        null=True,
+        on_delete=models.RESTRICT,
         related_name='+'
     )
     current_holder = models.ForeignKey(
         User,
-        on_delete=models.SET_NULL,
-        null=True,
+        on_delete=models.RESTRICT,
         related_name='+'
     )
 
